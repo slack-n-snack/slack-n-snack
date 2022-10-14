@@ -1,4 +1,4 @@
-# slack-n-snack
+# Slack-N-Snack
 
 ## Team Members
 
