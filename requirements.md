@@ -19,7 +19,8 @@ This functionality is very common for many different business cases, such as:
 - An application submission system, with notifications for application updates
 
 ## Scope
-
+   This product is simulating a serverless back-end for a meal app created using AWS chatbot and other AWS microservices. Snack-n-Slack is open to users with access to the slack channel, orders will be taken through the slack channel and processed using AWS microservices. Users will not be able edit an order after makiing a a request. Once a request is sent,
+   the request will be processed and the user will be notified of order processing events through a private direct message. User will not have a follow-up conversation with chatbot outside of creating the order. This app will maintain a datbase with all orders for admin operators to monitor store activity. (stretch) Admin operators will be able to view all of the orders within the databse using the chatbot - users do not have access to orders database. Access will be handled using role based access control features 
 
 
 ### Minimum Viable Product
