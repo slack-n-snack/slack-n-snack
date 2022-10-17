@@ -21,7 +21,6 @@ This functionality is very common for many different business cases, such as:
 ## Scope
 
 
-
 ### Minimum Viable Product
 
 
@@ -30,10 +29,10 @@ This functionality is very common for many different business cases, such as:
 
 ## Functional Requirements
 
-   1. User can create orders from a variety of options provided via slackbot.
-   2. User can choose to receive notification of order via slack or email.
-   3. User can view their order history.
-   4. Administrators can view all orders in database. (Stretch Goal)
+  1. User can create orders from a variety of options provided via slackbot.
+  2. User can choose to receive notification of order via slack or email.
+  3. User can view their order history.
+  4. Administrators can view all orders in database. (Stretch Goal)
 
 ### Data Flow
 
