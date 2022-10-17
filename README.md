@@ -12,6 +12,13 @@
 
 Everyday users of convience apps such as UberEats or DoorDash share a common issue. Why must a user have to use multiple apps to send orders for food? With Slack ‘n snack, users can now find all relevant restaurant items within a slack channel and place an order by interacting with our slackbot. 
 
+## Schema & Data Modeling 
+  ![DynamoDB Schema](./assets/sns-schema.png)
+  ![Message Flow](./assets/sns-msg-flow.png)
+  ![Data-modeling](./assets/data-modeling.png)
+
+
+
 ### Group Cooperation Plan
 
 [Cooperation Plan](https://docs.google.com/document/d/1nMF5haOiOd4dm0ao0B3r7_l2n9wWtOVYA0FsgM2enT0/edit#heading=h.6wfjyjag1w7h)
