@@ -31,8 +31,9 @@ This functionality is very common for many different business cases, such as:
 ## Functional Requirements
 
 
-
 ### Data Flow
+
+User initiates with slackbot start command to begin order process. Slackbot responds with a choice of 3 restaurants. User inputs their restaurant choice and slackbot responds with meal options for that restaurant.  User selects their meal choice and slackbot responds with sides/drink options.  User selects their options and the slackbot will ask them to confirm the order.  Confirmation is sent and the order is queued and stored in the database.  Confirmation of order is passed along to slack/email as well as delivery module.  Delivery module sends delivery confirmation to user email/slack channel. 
 
 ## Non-Functional Requirements
 
