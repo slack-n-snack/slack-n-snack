@@ -25,22 +25,21 @@ This functionality is very common for many different business cases, such as:
 
 ### Minimum Viable Product
 
-1. MVP Functionality:
-    - User can order from a choice of 3 restaurants.
-    - User will pick from a variety of meal options and sides/drinks.
-    - User will receive confirmation of order via slack.
-    - Admin will be able to pull all orders from database with basic auth.
-    - User will receive delivery notifications via slack.
+- MVP Functionality:
+  - User can order from a choice of 3 restaurants.
+  - User will pick from a variety of meal options and sides/drinks.
+  - User will receive confirmation of order via slack.
+  - Admin will be able to pull all orders from database with basic auth.
+  - User will receive delivery notifications via slack.
 
-2. Stretch Goals:
-    - More restaurant choices.
-    - User can choose between email and/or slack notifications for confirmation.
-    - User will receive delivery notifications via slack and/or email.
-    - User can view their personal order history.
+### Stretch Goals
 
-### Stretch
-
-   Role-based access control to access the database for admin operators using slash commands.
+- Stretch Goals:
+  - More restaurant choices.
+  - User can choose between email and/or slack notifications for confirmation.
+  - User will receive delivery notifications via slack and/or email.
+  - User can view their personal order history.
+  - Role-based access control to access the database for admin operators using slash commands.
 
 ## Functional Requirements
 
