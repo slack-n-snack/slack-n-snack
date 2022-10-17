@@ -19,22 +19,34 @@ This functionality is very common for many different business cases, such as:
 - An application submission system, with notifications for application updates
 
 ## Scope
-   This product is simulating a serverless back-end for a meal app created using AWS chatbot and other AWS microservices. Snack-n-Slack is open to users with access to the slack channel, orders will be taken through the slack channel and processed using AWS microservices. Users will not be able edit an order after makiing a a request. Once a request is sent,
-   the request will be processed and the user will be notified of order processing events through a private direct message. User will not have a follow-up conversation with chatbot outside of creating the order. This app will maintain a datbase with all orders for admin operators to monitor store activity. (stretch) Admin operators will be able to view all of the orders within the databse using the chatbot - users do not have access to orders database. Access will be handled using role based access control features 
 
+   This product is simulating a serverless back-end for a meal app created using AWS chatbot and other AWS microservices. Snack-n-Slack is open to users with access to the slack channel, orders will be taken through the slack channel and processed using AWS microservices. Users will not be able edit an order after makiing a a request. Once a request is sent,
+   the request will be processed and the user will be notified of order processing events through a private direct message. User will not have a follow-up conversation with chatbot outside of creating the order. This app will maintain a database with all orders for admin operators to monitor store activity. (stretch) Admin operators will be able to view all of the orders within the databse using the chatbot - users do not have access to orders database. Access will be handled using role based access control features 
 
 ### Minimum Viable Product
 
+- MVP Functionality:
+  - User can order from a choice of 3 restaurants.
+  - User will pick from a variety of meal options and sides/drinks.
+  - User will receive confirmation of order via slack.
+  - Admin will be able to pull all orders from database with basic auth.
+  - User will receive delivery notifications via slack.
 
-### Stretch
+### Stretch Goals
 
+- Stretch Goals:
+  - More restaurant choices.
+  - User can choose between email and/or slack notifications for confirmation.
+  - User will receive delivery notifications via slack and/or email.
+  - User can view their personal order history.
+  - Role-based access control to access the database for admin operators using slash commands.
 
 ## Functional Requirements
 
-   1. User can create orders from a variety of options provided via slackbot.
-   2. User can choose to receive notification of order via slack or email.
-   3. User can view their order history.
-   4. Administrators can view all orders in database. (Stretch Goal)
+  1. User can create orders from a variety of options provided via slackbot.
+  2. User can choose to receive notification of order via slack or email.
+  3. User can view their order history.
+  4. Administrators can view all orders in database. (Stretch Goal)
 
 ### Data Flow
 
