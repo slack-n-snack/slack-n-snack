@@ -4,6 +4,13 @@ db
 temp
 build
 memory
+config
+.zip
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
 
 # Created by https://www.gitignore.io/api/vim,osx,node,linux,windows
 ### Linux ###
@@ -108,7 +115,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
 
 ### Vim ###
 # swap
