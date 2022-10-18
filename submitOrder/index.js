@@ -34,9 +34,8 @@ exports.handler = (parsedOrder) => {
     Message: JSON.stringify(orderDetails),
     TopicArn: topic,
     MessageGroupId: parsedOrder.storeName.replace(' ', '_'),
+    MessageDeduplicationId: chance.guid(),
   };
-
-  console.log('ORDER DETAILS', orderDetails);
 
   sns.publish(payload).promise()
     .then(data => console.log('CUSTOMER ORDER DATA:', data))
