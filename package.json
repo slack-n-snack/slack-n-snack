@@ -1,0 +1,23 @@
+{
+  "name": "slack-n-snack",
+  "version": "1.0.0",
+  "description": "## Team Members",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slack-n-snack/slack-n-snack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slack-n-snack/slack-n-snack/issues"
+  },
+  "homepage": "https://github.com/slack-n-snack/slack-n-snack#readme",
+  "dependencies": {
+    "chance": "^1.1.9"
+  }
+}
