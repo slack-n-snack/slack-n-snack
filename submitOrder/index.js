@@ -16,7 +16,7 @@ exports.handler = (parsedOrder) => {
     'Tom\'s Tacos': 'https://sqs.us-west-2.amazonaws.com/363223802314/toms-tacos',
   };
 
-  const storeQueue = storeQueues[parsedOrder.store];
+  const storeQueue = storeQueues[parsedOrder.storeName];
 
   const orderDetails = {
     id: chance.guid(),
@@ -33,8 +33,10 @@ exports.handler = (parsedOrder) => {
   const payload = {
     Message: JSON.stringify(orderDetails),
     TopicArn: topic,
-    MessageGroupId: parsedOrder.storeName,
+    MessageGroupId: parsedOrder.storeName.replace(' ', '_'),
   };
+
+  console.log('ORDER DETAILS', orderDetails);
 
   sns.publish(payload).promise()
     .then(data => console.log('CUSTOMER ORDER DATA:', data))

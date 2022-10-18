@@ -6,6 +6,8 @@ build
 memory
 config
 .zip
+package-lock.json
+package.json
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
