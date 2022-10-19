@@ -24,7 +24,7 @@ exports.handler = function(event) {
   const stringifiedOrderMessage = JSON.stringify(orderMessage);
 
   const databaseParams = {
-    FunctionName: 'createOrder-SNS',
+    FunctionName: 'saveOrder',
     InvocationType: 'RequestResponse',
     LogType: 'Tail',
     Payload: JSON.stringify(stringifiedOrderMessage),
@@ -34,17 +34,6 @@ exports.handler = function(event) {
     if (err) console.log('ERROR IN getQueueOrder CALL TO DATABASE LAMBDA:', err);
     else console.log('DATABASE LAMBDA RETURN VALUE:', data);
   });
-
-  //   const orderConfirmationParams = {
-  //   FunctionName: 'createOrder-SNS',
-  //   InvocationType: 'RequestResponse',
-  //   LogType: 'Tail',
-  //   Payload: JSON.stringify(orderMessage),
-  // };
-
-  // lambda.invoke(params, function(err, data) {
-  //     console.log('DATABASE LAMBDA RETURN VALUE:', data);
-  // });
 
   const deliveryConfirmationParams = {
     FunctionName: 'pollFIFOSnackQueue',
