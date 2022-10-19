@@ -8,7 +8,6 @@ const chance = new Chance();
 exports.handler = (parsedOrder) => {
   const sns = new AWS.SNS();
   const topic = 'arn:aws:sns:us-west-2:363223802314:slack-orders.fifo';
-  // const parsedOrder = JSON.parse(customerOrder);
 
   const storeQueues = {
     'Bob\'s Burgers': 'https://sqs.us-west-2.amazonaws.com/363223802314/bobs-burgers',
@@ -18,16 +17,14 @@ exports.handler = (parsedOrder) => {
 
   const storeQueue = storeQueues[parsedOrder.storeName];
 
+  const { storeName, clientId, userOrder: { meal, drink, side, cost } } = parsedOrder;
+
   const orderDetails = {
     id: chance.guid(),
-    storeName: parsedOrder.storeName,
+    storeName,
     storeId: storeQueue,
-    userOrder: {
-      meal: parsedOrder.userOrder.meal,
-      drink: parsedOrder.userOrder.drink,
-      side: parsedOrder.userOrder.side,
-    },
-    clientId: parsedOrder.clientId,
+    clientId,
+    userOrder: { meal, drink, side, cost },
   };
 
   const payload = {
