@@ -3,47 +3,41 @@
 const AWS = require('aws-sdk');
 AWS.config.region = 'us-west-2';
 const lambda = new AWS.Lambda();
-const { Chance } = require('chance');
-const chance = new Chance();
 
-exports.handler = function(event) {
+exports.handler = function(orderEvent) {
 
-  const parsedData = JSON.parse(event.Records[0].body);
-  const message = parsedData.Message;
-  const parsedMessage = JSON.parse(message);
+  console.log('orderEvent FROM getQueuedOrder', orderEvent);
 
-  console.log('PARSED MESSAGE:', parsedMessage);
+  const parsedOrder = JSON.parse(orderEvent.Records[0].body);
+
+  console.log('parsedOrder FROM getQueuedOrder', parsedOrder);
 
   const orderMessage = {
-    QueueUrl: parsedMessage.storeId,
-    MessageBody: message,
-    MessageDeduplicationId: chance.guid(),
-    MessageGroupId: chance.guid(),
+    QueueUrl: parsedOrder.storeId,
+    MessageBody: parsedOrder,
   };
 
-  const stringifiedOrderMessage = JSON.stringify(orderMessage);
+  const orderMessageJSON = JSON.stringify(JSON.stringify(orderMessage)); // No idea why, but it only works this way
+
+  console.log('orderMessageJSON from getQueuedOrder', orderMessageJSON);
 
   const databaseParams = {
     FunctionName: 'saveOrder',
-    InvocationType: 'RequestResponse',
-    LogType: 'Tail',
-    Payload: JSON.stringify(stringifiedOrderMessage),
+    Payload: orderMessageJSON,
   };
 
   lambda.invoke(databaseParams, function(err, data) {
-    if (err) console.log('ERROR IN getQueueOrder CALL TO DATABASE LAMBDA:', err);
-    else console.log('DATABASE LAMBDA RETURN VALUE:', data);
+    if (err) console.log('ERROR IN getQueueOrder LAMBDA CALL:', err);
+    else console.log('saveOrder LAMBDA RETURN VALUE:', data);
   });
 
   const deliveryConfirmationParams = {
-    FunctionName: 'pollFIFOSnackQueue',
-    InvocationType: 'RequestResponse',
-    LogType: 'Tail',
-    Payload: JSON.stringify(stringifiedOrderMessage),
+    FunctionName: 'sendDeliveryConfirmation',
+    Payload: orderMessageJSON,
   };
 
   lambda.invoke(deliveryConfirmationParams, function(err, data) {
-    if (err) console.log('ERROR IN getQueueOrder CALL TO DELIVERY CONFIRMATION LAMBDA:', err);
-    else console.log('DELIVERY CONFIRMATION LAMBDA RETURN VALUE:', data);
+    if (err) console.log('ERROR IN sendDeliveryConfirmation LAMBDA CALL:', err);
+    else console.log('sendDeliveryConfirmation LAMBDA RETURN VALUE:', data);
   });
 };

@@ -6,13 +6,17 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async (orderEvent) => {
 
-  const parsedOrderEvent = JSON.parse(orderEvent);
-  const parsedOrder = JSON.parse(parsedOrderEvent.MessageBody);
+  console.log('orderEvent FROM saveOrder', orderEvent);
+
+  const parsedOrderEvent = JSON.parse(orderEvent).MessageBody;
+  const parsedOrder = JSON.parse(parsedOrderEvent.Message);
 
   const params = {
     TableName : 'slack-n-snack',
     Item: parsedOrder,
   };
+
+  console.log('parsedOrder FROM saveOrder', parsedOrder);
 
   try {
     const response = await dynamodb.put(params).promise();
