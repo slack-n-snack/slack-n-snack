@@ -2,9 +2,11 @@
 
 const AWS = require('aws-sdk');
 AWS.config.update({ region: 'us-west-2' });
+const sns = new AWS.SNS();
 const { Chance } = require('chance');
 const chance = new Chance();
 
+<<<<<<< HEAD
 
   const parsedOrder = {   
     storeName: "Bob's Burgers",
@@ -18,27 +20,19 @@ const chance = new Chance();
    
 
   const sns = new AWS.SNS();
+=======
+exports.handler = (parsedOrder) => {
+
+>>>>>>> 9ca35ea3e7f5f09cca0d91983d2888c54e4189bd
   const topic = 'arn:aws:sns:us-west-2:363223802314:slack-orders.fifo';
-  // const parsedOrder = JSON.parse(customerOrder);
 
-  const storeQueues = {
-    'Bob\'s Burgers': 'https://sqs.us-west-2.amazonaws.com/363223802314/bobs-burgers',
-    'Pat\'s Pizza': 'https://sqs.us-west-2.amazonaws.com/363223802314/pats-pizza',
-    'Tom\'s Tacos': 'https://sqs.us-west-2.amazonaws.com/363223802314/toms-tacos',
-  };
-
-  const storeQueue = storeQueues[parsedOrder.storeName];
+  const { storeName, clientId, userOrder: { meal, drink, side, cost } } = parsedOrder;
 
   const orderDetails = {
     id: chance.guid(),
-    storeName: parsedOrder.storeName,
-    storeId: storeQueue,
-    userOrder: {
-      meal: parsedOrder.userOrder.meal,
-      drink: parsedOrder.userOrder.drink,
-      side: parsedOrder.userOrder.side,
-    },
-    clientId: parsedOrder.clientId,
+    storeName,
+    clientId,
+    userOrder: { meal, drink, side, cost },
   };
 
   const payload = {
@@ -47,6 +41,7 @@ const chance = new Chance();
     MessageGroupId: parsedOrder.storeName.replace(' ', '_'),
   };
 
+<<<<<<< HEAD
   console.log('ORDER DETAILS', orderDetails);
 
 //   sns.publish(payload).promise()
@@ -66,3 +61,9 @@ sns.publish(payload, (err, data) => {
   }
 });
 console.log('payload published to SNS');
+=======
+  sns.publish(payload).promise()
+    .then(data => console.log('CUSTOMER ORDER DATA:', data))
+    .catch(err => console.log('ERROR IN CUSTOMER ORDER', err));
+};
+>>>>>>> 9ca35ea3e7f5f09cca0d91983d2888c54e4189bd
