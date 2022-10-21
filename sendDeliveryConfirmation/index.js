@@ -4,12 +4,8 @@ const sns = new AWS.SNS();
 
 exports.handler = (orderEvent) => {
 
-  console.log('orderEvent FROM sendDeliveryConfirmation', orderEvent);
-
   const parsedMessageBody = JSON.parse(orderEvent).MessageBody;
   const parsedOrder = JSON.parse(parsedMessageBody.Message);
-
-  console.log('parsedOrder in sendDeliveryConfirmation', parsedOrder);
 
   const storeTopicARN = {
     'Bob\'s Burgers': 'arn:aws:sns:us-west-2:363223802314:bobs-burgers-topic.fifo',
@@ -24,8 +20,6 @@ exports.handler = (orderEvent) => {
     TopicArn: topic,
     MessageGroupId: parsedOrder.storeName.replace(' ', '_'),
   };
-
-  console.log('DELIVERY CONFIRMATION PAYLOAD:', payload);
 
   sns.publish(payload).promise()
     .then(data => console.log('DELIVERY CONFIRMATION SENT:', data))
