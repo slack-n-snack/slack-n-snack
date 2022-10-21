@@ -3,13 +3,16 @@ const Chance = require('chance');
 const AWS = require('aws-sdk');
 
 AWS.config.update({region: 'us-west-2'});
-const sqs = AWS.SQS();
+const sqs = new AWS.SQS();
 const chance = new Chance();
 
 const app = Consumer.create({
   queueUrl: 'https://sqs.us-west-2.amazonaws.com/363223802314/slack-orders-queue.fifo',
   handleMessage: async (message) => {
     // do some work with `message`
+    
+console.log('hello - polling from queue');
+    console.log(message);
     const parsedData = JSON.parse(message);
 
     let params = {

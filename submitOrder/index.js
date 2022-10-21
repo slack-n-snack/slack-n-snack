@@ -5,7 +5,18 @@ AWS.config.update({ region: 'us-west-2' });
 const { Chance } = require('chance');
 const chance = new Chance();
 
-exports.handler = (parsedOrder) => {
+
+  const parsedOrder = {   
+    storeName: "Bob's Burgers",
+    userOrder: {
+      meal: "burger",
+      drink: "water",
+      side: "fries"
+    }, 
+    clientId: 8
+   };
+   
+
   const sns = new AWS.SNS();
   const topic = 'arn:aws:sns:us-west-2:363223802314:slack-orders.fifo';
   // const parsedOrder = JSON.parse(customerOrder);
@@ -38,7 +49,20 @@ exports.handler = (parsedOrder) => {
 
   console.log('ORDER DETAILS', orderDetails);
 
-  sns.publish(payload).promise()
-    .then(data => console.log('CUSTOMER ORDER DATA:', data))
-    .catch(err => console.log('ERROR IN CUSTOMER ORDER', err));
-};
+//   sns.publish(payload).promise()
+//     .then(data => {
+//       console.log('HELOOOOOOOOOOO');
+//       console.log('CUSTOMER ORDER DATA:', data);
+//     })
+//     .catch(err => console.log('ERROR IN CUSTOMER ORDER', err));
+// };
+
+sns.publish(payload, (err, data) => {
+  if(err){
+    console.log(err)
+  } else {
+    console.log('data:::::::::::', data);
+    console.log('HELOOOOOOO');
+  }
+});
+console.log('payload published to SNS');
