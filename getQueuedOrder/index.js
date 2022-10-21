@@ -6,11 +6,7 @@ const lambda = new AWS.Lambda();
 
 exports.handler = function(orderEvent) {
 
-  console.log('orderEvent FROM getQueuedOrder', orderEvent);
-
   const parsedOrder = JSON.parse(orderEvent.Records[0].body);
-
-  console.log('parsedOrder FROM getQueuedOrder', parsedOrder);
 
   const orderMessage = {
     QueueUrl: parsedOrder.storeId,
@@ -18,8 +14,6 @@ exports.handler = function(orderEvent) {
   };
 
   const orderMessageJSON = JSON.stringify(JSON.stringify(orderMessage)); // No idea why, but it only works this way
-
-  console.log('orderMessageJSON from getQueuedOrder', orderMessageJSON);
 
   const databaseParams = {
     FunctionName: 'saveOrder',
@@ -29,6 +23,16 @@ exports.handler = function(orderEvent) {
   lambda.invoke(databaseParams, function(err, data) {
     if (err) console.log('ERROR IN getQueueOrder LAMBDA CALL:', err);
     else console.log('saveOrder LAMBDA RETURN VALUE:', data);
+  });
+
+  const orderConfirmationParams = {
+    FunctionName: 'sendOrderConfirmation',
+    Payload: orderMessageJSON,
+  };
+
+  lambda.invoke(orderConfirmationParams, function(err, data) {
+    if (err) console.log('ERROR IN orderDeliveryConfirmation LAMBDA CALL:', err);
+    else console.log('orderDeliveryConfirmation LAMBDA RETURN VALUE:', data);
   });
 
   const deliveryConfirmationParams = {
