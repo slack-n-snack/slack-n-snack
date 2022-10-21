@@ -61,3 +61,7 @@ The application should be intuitive and easy to use for a new user. User prompts
 ### Testability
 
 The application should be testable and achieve at least 80% test coverage. Testing should include tests at multiple levels, including unit tests, integration tests, and system tests.
+
+### Group Cooperation Plan
+
+[Cooperation Plan](https://docs.google.com/document/d/1nMF5haOiOd4dm0ao0B3r7_l2n9wWtOVYA0FsgM2enT0/edit#heading=h.6wfjyjag1w7h)
