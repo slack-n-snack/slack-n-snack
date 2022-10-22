@@ -17,7 +17,7 @@ exports.handler = (orderEvent) => {
     
   const options = {
     hostname: "hooks.slack.com",
-    path: "https://hooks.slack.com/services/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",
+    path: "<Slack API webhook goes here>",
     method: 'POST'
   };
 
