@@ -35,3 +35,5 @@ Everyday users of convience apps such as UberEats or DoorDash share a common iss
 [Initial UML/Problem Domain](https://www.figma.com/file/ucpDquxJi4ilE8ahwXyJB7/Mid-term-project?node-id=0%3A1)
 
 [Trello](https://trello.com/b/ensxttxp/slack-n-snack)
+
+[Requirements Documentation](./requirements.md)
